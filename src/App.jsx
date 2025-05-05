@@ -12,38 +12,46 @@
  * - Persistência e exibição de cartas salvas no localStorage
  * - Estilização com Bootstrap
  */
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+import { useState } from 'react';
+import CardInfo from './components/CardInfo';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [codigoCarta, setCodigoCarta] = useState('');
+  const [carta, setCarta] = useState(null);
+
+  const buscarCarta = async () => {
+    try {
+      const resposta = await fetch(`https://api.pokemontcg.io/v2/cards/${codigoCarta}`);
+      const dados = await resposta.json();
+      setCarta(dados.data);
+    } catch (erro) {
+      console.error('Erro ao buscar a carta:', erro);
+      setCarta(null);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className="container mt-5 text-white">
+      <h1 className="mb-4 fw-bold">Buscar Carta Pokémon</h1>
+      <div className="d-flex gap-2 mb-4">
+        <input
+          type="text"
+          className="form-control w-25"
+          value={codigoCarta}
+          onChange={(e) => setCodigoCarta(e.target.value)}
+          placeholder="Ex: xy7-54"
+        />
+        <button className="btn btn-dark" onClick={buscarCarta}>
+          Buscar
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      {carta && <CardInfo carta={carta} />}
+    </div>
+  );
 }
 
-export default App
+export default App;
+
+
