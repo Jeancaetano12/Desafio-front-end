@@ -1,0 +1,59 @@
+/**
+ * Nome do arquivo: styles.css
+ * Data de criação: 06/05/2025
+ * Autor: Jean Caetano
+ * Matrícula: 01735073
+ *
+ * Descrição:
+ * Este componente React implementa um dashboard de cartas do Pokémon TCG.
+ * Funcionalidades:
+ * - Campo de busca por código de card
+ * - Exibição detalhada do card pesquisado
+ * - Persistência e exibição de cartas salvas no localStorage
+ * - Estilização com Bootstrap
+ */
+ 
+ .saved-card-img {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border-radius: 5px;
+  }
+  
+  .saved-card-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card-details {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .list-group-item {
+    margin-bottom: 8px;
+    border-radius: 4px !important;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+  }
+
+  /* Estilos para a barra de busca */
+.search-bar {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-bar input {
+  border-radius: 4px 0 0 4px !important;
+}
+
+.search-bar button {
+  border-radius: 0 4px 4px 0 !important;
+}
