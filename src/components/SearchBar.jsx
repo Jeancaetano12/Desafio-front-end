@@ -23,6 +23,7 @@ function SearchBar({ onSearch, setLoading, setError }) {
   const handleSearch = async () => {
     try {
       setLoading(true);
+      setError(null);
       const apiKey = import.meta.env.VITE_POKEMON_API_KEY;
       PokemonTCG.configure({ apiKey });
       

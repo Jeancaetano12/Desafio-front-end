@@ -13,7 +13,7 @@
 function SavedCards({ cards, onCardClick }) {
   return (
     <div className="saved-cards-section">
-      <h3>Seu deck</h3>
+      <h5>Seu deck</h5>
       {cards.length === 0 ? (
         <p>Nenhuma carta salva ainda.</p>
       ) : (

@@ -12,38 +12,70 @@
  * - Persistência e exibição de cartas salvas no localStorage
  * - Estilização com Bootstrap
  */
+ /* Cor da pagina */
+ /* Estilo de fontes */
+.small-strong { /*Negrito menor */
+  font-size: 14px; 
+}
   /*Estilo da cartinha salva */ 
- .saved-card-img {
-    width: 100px;
-    height: auto;
-    cursor: pointer;
-    transition: transform 0.2s;
-    border-radius: 5px;
-    margin-bottom: 40px;
-  }
+.saved-card-img {
+  width: 90px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
   
-  .saved-card-img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  }
-  
-  .card-details {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .list-group-item {
-    margin-bottom: 8px;
-    border-radius: 4px !important;
-  }
+.saved-card-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
 
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 10px;
-  }
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+}
+  /* Estilo dos detalhes da carta */
+.card-details {
+  background-color: #f8f9fa;
+  padding: -10px;
+  flex: 0 0 68.75%;
+  margin-left: 45px;
+}
+
+.name-card {
+  
+}
+
+.descricao {
+  max-width: 190px;
+}
+
+.conteiner-card-details { /* CAIXA PAI */
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-conjunto {
+  flex-direction: row;
+}
+
+.info-name {
+  padding-top: -20px !important; 
+}
+.list-group {
+  margin-bottom: 8px;
+  border-radius: 4px !important;
+}
+
+.lista-fraquezas {
+  padding-top: 6px;
+  border-radius: 4px !important;
+}
 
   /* Estilos para a barra de busca */
 .search-bar {

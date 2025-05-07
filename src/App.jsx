@@ -44,8 +44,8 @@ function App() {
 
   return (
     <div className="container mt-4">
-      <h1 className="text-center mb-4">Dashboard Pokémon TCG</h1>
-      
+      <h3 className="text-center mb-4">Dashboard Pokémon TCG</h3>
+  
       <SavedCards cards={savedCards} onCardClick={setCurrentCard} />
       <SearchBar 
         onSearch={setCurrentCard} 
