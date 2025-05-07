@@ -12,13 +12,14 @@
  * - Persistência e exibição de cartas salvas no localStorage
  * - Estilização com Bootstrap
  */
- 
+  /*Estilo da cartinha salva */ 
  .saved-card-img {
     width: 100px;
     height: auto;
     cursor: pointer;
     transition: transform 0.2s;
     border-radius: 5px;
+    margin-bottom: 40px;
   }
   
   .saved-card-img:hover {
@@ -53,7 +54,13 @@
 .search-bar input {
   border-radius: 4px 0 0 4px !important;
 }
+ /* Estilos para o botão de pesquisa */
+.search-button {
+  border-top-left-radius: 0.5rem !important;
+  border-bottom-left-radius: 0.5rem !important;
+}
 
-.search-bar button {
-  border-radius: 0 4px 4px 0 !important;
+.search-button:hover {
+  transform: scale(1.020);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }

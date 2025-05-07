@@ -26,7 +26,6 @@ function App() {
   const [currentCard, setCurrentCard] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
-// 
 
   // Carrega cartas salvas do localStorage ao iniciar
   useEffect(() => {

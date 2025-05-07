@@ -13,7 +13,7 @@
 function SavedCards({ cards, onCardClick }) {
   return (
     <div className="saved-cards-section">
-      <h3>Suas Cartas Salvas</h3>
+      <h3>Seu deck</h3>
       {cards.length === 0 ? (
         <p>Nenhuma carta salva ainda.</p>
       ) : (
@@ -24,7 +24,7 @@ function SavedCards({ cards, onCardClick }) {
               src={card.images.small} 
               alt={card.name}
               onClick={() => onCardClick(card)}
-              className="saved-card"
+              className="saved-card-img"
             />
           ))}
         </div>

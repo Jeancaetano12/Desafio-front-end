@@ -37,17 +37,19 @@ function SearchBar({ onSearch, setLoading, setError }) {
 
   return (
     <div className="search-bar mb-4">
-      <div className="input-group">
+      <div className="d-flex">
         <input
           type="text"
           className="form-control"
+          // Editando a força a forma da barra de pesquisa pra que ela fique com as duas bordas arredondadas
+          style={{ borderTopRightRadius: '0.5rem', borderBottomRightRadius: '0.5rem', borderTopLeftRadius: '0.5rem', borderBottomLeftRadius: '0.5rem' }}
           placeholder="Ex: base1-4 (Charizard) ou swsh9-175 (Pikachu VMAX)"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
         />
         <button 
-          className="btn btn-primary" 
+          className="btn btn-primary ms-2 search-button" 
           onClick={handleSearch}
         >
           Buscar
