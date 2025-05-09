@@ -9,23 +9,36 @@
  * Funcionalidades:
  * - Persistência e exibição de cartas salvas no localStorage
  */
+import { useState } from 'react';
 
-function SavedCards({ cards, onCardClick }) {
+function SavedCards({ cards, onCardClick, onRemove }) {
+  
+  const [hoveredCardId, setHoveredCardId] = useState(null);
+
   return (
     <div className="saved-cards-section">
       <h5>Seu deck</h5>
       {cards.length === 0 ? (
-        <p>Nenhuma carta salva ainda.</p>
+        <p>Nenhuma carta salva.</p>
       ) : (
         <div className="cards-grid">
           {cards.map(card => (
-            <img 
-              key={card.id}
-              src={card.images.small} 
-              alt={card.name}
-              onClick={() => onCardClick(card)}
-              className="saved-card-img"
-            />
+            <div key={card.id} className="saved-card-container">
+              <img 
+                src={card.images.small} 
+                alt={card.name}
+                onClick={() => onCardClick(card)}
+                className={`saved-card-img ${hoveredCardId === card.id ? 'shake' : ''}`}
+              />
+              <button 
+                onClick={() => onRemove(card.id)} 
+                className="remove-btn"
+                onMouseEnter={() => setHoveredCardId(card.id)}
+                onMouseLeave={() => setHoveredCardId(null)}
+              >
+                ✖
+              </button>
+            </div>
           ))}
         </div>
       )}

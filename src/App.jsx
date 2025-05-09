@@ -42,11 +42,22 @@ function App() {
     localStorage.setItem('pokemonCards', JSON.stringify(updatedCards))
   }
 
+  // Função para remover cartas salvas
+  const removeCard = (id) => {
+  const updatedCards = savedCards.filter(card => card.id !== id)
+  setSavedCards(updatedCards)
+  localStorage.setItem('pokemonCards', JSON.stringify(updatedCards))
+}
+
   return (
     <div className="container mt-4">
       <h3 className="text-center mb-4">Dashboard Pokémon TCG</h3>
   
-      <SavedCards cards={savedCards} onCardClick={setCurrentCard} />
+      <SavedCards 
+        cards={savedCards} 
+        onCardClick={setCurrentCard}
+        onRemove={removeCard}
+      />
       <SearchBar 
         onSearch={setCurrentCard} 
         setLoading={setLoading} 

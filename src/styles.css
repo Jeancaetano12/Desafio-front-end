@@ -17,14 +17,35 @@
 .small-strong { /*Negrito menor */
   font-size: 14px; 
 }
-  /*Estilo da cartinha salva */ 
+  /*Estilos de onde guarda as cartinhas salvas */
+   
+/* Classe para estilo, responsavel por animar um leve tremor na carta */
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(2deg); }
+  50% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
+.saved-cards-section {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
 .saved-card-img {
   width: 90px;
   height: auto;
   cursor: pointer;
   transition: transform 0.2s;
   border-radius: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 6px;
 }
   
 .saved-card-img:hover {
@@ -37,16 +58,39 @@
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 10px;
 }
+
+.saved-card-container {
+  position: relative;
+  display: inline-block;
+}
+
+.remove-btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 0;
+}
+
+.remove-btn:hover {
+  transform: scale(1.30);
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.8)
+}
   /* Estilo dos detalhes da carta */
 .card-details {
   background-color: #f8f9fa;
   padding: -10px;
   flex: 0 0 68.75%;
   margin-left: 45px;
-}
-
-.name-card {
-  
 }
 
 .descricao {
