@@ -91,7 +91,7 @@ function CardDetails({ card, onSave, isSaved }) {
             )}
           </div>
 
-          {/* Informações do Set */}
+          {/* Informações do conjunto */}
           <div className="row-mt-3 info-name">
             <h4>📦 Informações do Conjunto</h4>
           </div>

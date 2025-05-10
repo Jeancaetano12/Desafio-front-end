@@ -51,8 +51,7 @@ function App() {
 
   return (
     <div className="container mt-4">
-      <h3 className="text-center mb-4">Dashboard Pokémon TCG</h3>
-  
+      <h3 className="dashboard-title">Dashboard Pokémon TCG</h3>
       <SavedCards 
         cards={savedCards} 
         onCardClick={setCurrentCard}
@@ -65,7 +64,7 @@ function App() {
       />
       
       {loading && <div className="text-center mt-4">Carregando...</div>}
-      {error && <div className="alert alert-danger mt-4">{error}</div>}
+      {error && <div className="error-message">{error} <span className="error-icon">⚠️</span></div>}
       
       {currentCard && (
         <CardDetails 

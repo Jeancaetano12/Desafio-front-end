@@ -14,11 +14,61 @@
  */
  /* Cor da pagina */
  /* Estilo de fontes */
+.dashboard-title {
+  font-family: 'Pokemon Solid', sans-serif; /* fonte do Pokémon */
+  font-size: 3rem;
+  color: #ffcc00;
+  -webkit-text-stroke: 2px #3466af; /* Borda azul */
+  letter-spacing: 3px;
+  text-align: center;
+  margin: 0.5rem 0;
+  margin-bottom: 24px;
+}
+
+.deck-title {
+  font-family: 'Pokemon Solid', sans-serif;
+  font-size: 1.5rem;
+  color: #ffcc00; /* Amarelo Pokémon */
+  -webkit-text-stroke: 2px #3466af; /* Borda azul */
+  background-color: #f8f9fa; /* Fundo branco para sobrepor a linha */
+  display: inline-block;
+  padding-bottom: 0.3rem;
+  z-index: 1; /* Garante que o texto fique acima da linha */
+  position: relative; /* Permite posicionar a linha */
+}
+
 .small-strong { /*Negrito menor */
   font-size: 14px; 
 }
-  /*Estilos de onde guarda as cartinhas salvas */
-   
+
+.error-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 1rem 0;
+  padding: 12px;
+  background-color: #fff1f1; /* Fundo vermelho claro */
+  border: 2px solid #ff3333; /* Borda vermelha */
+  border-radius: 10px;
+  color: #d32f2f; /* Texto vermelho escuro */
+  font-weight: bold;
+  animation: shake 0.5s ease-in-out; /* Animação de shake */
+}
+/*Estilos de onde guarda as cartinhas salvas */
+
+/* Classe para estilo, responsavel por deixar coisas bilhando */
+@keyframes shine {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; text-shadow: 0 0 10px #ffcc00; }
+  100% { opacity: 0.8; }
+}
+
+.dashboard-title:hover {
+  animation: shine 1.5s infinite;
+}
+
+
 /* Classe para estilo, responsavel por animar um leve tremor na carta */
 @keyframes shake {
   0% { transform: rotate(0deg); }
@@ -29,14 +79,41 @@
 }
 
 .shake {
-  animation: shake 0.4s ease-in-out;
+  animation: 
+    shake 0.4s infinite,
+    shine 1.5s infinite;
 }
+
+.deck-title::before {
+  content: "";
+  position: absolute;
+  bottom: -30%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    #3d7dca 10%,
+    #ffcb05 10%,
+    #ffcb05 90%,
+    #3d7dca 90%
+  );
+  transform: translateY(-50%);
+  z-index: -1; /* Linha fica ATRÁS do texto, mas não é afetada pelo fluxo */
+}
+
+.deck-title:hover {
+  animation: shine 1.5s infinite;
+}
+
 .saved-cards-section {
+  text-align: center;
   background-color: #f8f9fa;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  position: relative; /* Para posicionar a linha */
 }
 
 .saved-card-img {
@@ -51,6 +128,7 @@
 .saved-card-img:hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  animation: shine 1.5s infinite;
 }
 
 .cards-grid {
@@ -83,7 +161,7 @@
 
 .remove-btn:hover {
   transform: scale(1.30);
-  box-shadow: 0 0 30px rgba(255, 0, 0, 0.8)
+  box-shadow: 0 0 30px rgb(255, 0, 0)
 }
   /* Estilo dos detalhes da carta */
 .card-details {
@@ -93,17 +171,18 @@
   margin-left: 45px;
 }
 
-.descricao {
-  max-width: 190px;
-}
-
 .conteiner-card-details { /* CAIXA PAI */
   background-color: #f8f9fa;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 20px !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.img-fluid:hover {
+  transform: scale(1.05) !important;  
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.3) !important;
+  transition: transform 0.2s ease !important; 
+}
 .info-conjunto {
   flex-direction: row;
 }
@@ -121,22 +200,32 @@
   border-radius: 4px !important;
 }
 
+.btn-success:hover {
+  transform: scale(1.060);
+  box-shadow: 0 0 24px rgb(4, 153, 14);
+}
+
   /* Estilos para a barra de busca */
 .search-bar {
   max-width: 600px;
-  margin: 0 auto;
+  margin: 0 auto; 
 }
 
 .search-bar input {
-  border-radius: 4px 0 0 4px !important;
+  border-radius: 20px !important;
 }
  /* Estilos para o botão de pesquisa */
 .search-button {
-  border-top-left-radius: 0.5rem !important;
-  border-bottom-left-radius: 0.5rem !important;
+  border-radius: 20px !important; /* Arredonda ambos os lados */
+  padding: 8px 15px !important;
+  background-color: #3d7dca !important; /* Azul Pokémon */
+  color: white !important;
+  border: none !important;
+  cursor: pointer !important;
+  margin-left: 5px !important; /* Espaço entre input e botão */
 }
 
 .search-button:hover {
-  transform: scale(1.020);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transform: scale(1.060);
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
 }

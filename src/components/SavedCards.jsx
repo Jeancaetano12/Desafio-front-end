@@ -9,15 +9,19 @@
  * Funcionalidades:
  * - Persistência e exibição de cartas salvas no localStorage
  */
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 function SavedCards({ cards, onCardClick, onRemove }) {
   
   const [hoveredCardId, setHoveredCardId] = useState(null);
 
+    // 2. Reseta o ID da carta "tremendo" sempre que a lista de cartas mudar
+  useEffect(() => {
+    setHoveredCardId(null);
+  }, [cards]); // Executa toda vez que cards for atualizado (nova carta salva ou removida)
+  
   return (
     <div className="saved-cards-section">
-      <h5>Seu deck</h5>
+      <h5 className="deck-title">Seu deck</h5>
       {cards.length === 0 ? (
         <p>Nenhuma carta salva.</p>
       ) : (
@@ -25,12 +29,12 @@ function SavedCards({ cards, onCardClick, onRemove }) {
           {cards.map(card => (
             <div key={card.id} className="saved-card-container">
               <img 
-                src={card.images.small} 
+                src={card.images.small}
                 alt={card.name}
                 onClick={() => onCardClick(card)}
                 className={`saved-card-img ${hoveredCardId === card.id ? 'shake' : ''}`}
               />
-              <button 
+              <button
                 onClick={() => onRemove(card.id)} 
                 className="remove-btn"
                 onMouseEnter={() => setHoveredCardId(card.id)}
