@@ -36,14 +36,14 @@ function SearchBar({ onSearch, setLoading, setError }) {
 
         const result = await PokemonTCG.card.where({
           q: `name:${searchTerm.split(' ')[0]}*`,
-          pageSize: 50,
+          pageSize: 40,
         });
 
         const filtered = result.data.filter(card =>
           card.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
 
-        setSuggestions(filtered.slice(0, 10));
+        setSuggestions(filtered.slice(0, 20));
       } catch (err) {
         setError('Erro ao buscar sugestões');
       } finally {

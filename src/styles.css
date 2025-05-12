@@ -12,26 +12,33 @@
  * - Persistência e exibição de cartas salvas no localStorage
  * - Estilização com Bootstrap
  */
- /* Cor da pagina */
 
-/* Tema escuro suave */
-/* Garante que o fundo ocupe toda a tela */
-html, body, #root {
+ /* Cor da pagina */
+html, body {
   margin: 0;
   padding: 0;
+  background-color: #1e1e2f;
+  color: #f1f1f1;
   height: 100%;
-  background-color: #1e1e2f; /* seu tom escuro */
 }
 
-/* Remove rolagem horizontal caso haja */
-body {
-  overflow-x: hidden;
-  font-family: 'Segoe UI', sans-serif;
+.container.dark-theme {
+  background-color: rgba(30, 30, 47, 0.85); /* Fundo translúcido */
+  background-image: url('/lucario-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 1px !important; 
+  max-width: 100% !important;
 }
 
 .dark-theme {
   background-color: #1e1e2f;
-  color: #f1f1f1;
   min-height: 100vh;
 }
 
@@ -42,8 +49,8 @@ body {
 .dark-theme .search-bar,
 .dark-theme .list-group-item,
 .dark-theme .card-details {
-  background-color: #2a2a3b;
-  color: #f1f1f1;
+  background-color: rgba(0, 0, 0, 0.5); /* ajuste a opacidade conforme desejar */
+  color: #f1f1f1; /* Serve para deixar os textos visiveis */
   border: none;
 }
 
@@ -51,16 +58,19 @@ body {
 .dark-theme input.form-control,
 .dark-theme button.btn {
   background-color: #3a3a4a;
-  color: #fff;
-  border: none;
+  color: #fff; /* Serve para deixar os textos visiveis */
 }
 
 .dark-theme input::placeholder {
   color: #aaa;
 }
 
+.dark-theme .list-group {
+  background-color: #1e1e2f;
+}
+
 .dark-theme .list-group-item:hover {
-  background-color: #444;
+  background-color: #1e1e2f;
 }
 
  /* Estilo de fontes */
@@ -80,9 +90,8 @@ body {
   font-size: 1.5rem;
   color: #ffcc00; /* Amarelo Pokémon */
   -webkit-text-stroke: 2px #3466af; /* Borda azul */
-  background-color: #2a2a3b; /* Fundo branco para sobrepor a linha */
   display: inline-block;
-  padding-bottom: 0.3rem;
+  padding-bottom: 0.2rem;
   z-index: 1; /* Garante que o texto fique acima da linha */
   position: relative; /* Permite posicionar a linha */
 }
@@ -158,11 +167,13 @@ body {
 
 .saved-cards-section {
   text-align: center;
-  background-color: #f8f9fa;
+  background-color: #2a2a3b;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
   position: relative; /* Para posicionar a linha */
 }
 
@@ -215,17 +226,25 @@ body {
 }
   /* Estilo dos detalhes da carta */
 .card-details {
-  background-color: #f8f9fa;
+  background-color: #2a2a3b;
   padding: -10px;
   flex: 0 0 68.75%;
   margin-left: 45px;
+  border-radius: 20px;
 }
 
+.name-card{
+  margin-top: 6px;
+  text-align: center;
+}
 .conteiner-card-details { /* CAIXA PAI */
-  background-color: #f8f9fa;
+  background-color: #2a2a3b;
   padding: 20px;
   border-radius: 20px !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+  margin-bottom: 10px !important;
 }
 
 .img-fluid {
@@ -304,12 +323,14 @@ body {
   margin: 0 auto; 
 }
 
-.search-bar input {
-  border-radius: 20px !important;
+/* Mensagem de carregamento */
+.text-center {
+  color: white;
 }
 
 .form-control{
   text-align: center;
+  background-color: #1e1e2f !important;
 }
 
  /* Estilos para o botão de pesquisa */
