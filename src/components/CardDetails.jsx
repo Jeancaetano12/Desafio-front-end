@@ -46,7 +46,7 @@ function CardDetails({ card, onSave, isSaved }) {
           {/* Ataques */}
           {card.attacks && (
             <div className="row-mb-3">
-              <h4>⛨ Ataques</h4>
+              <h4 className="Ataque-name">⛨ Ataques</h4>
               <div className="list-group">
                 {card.attacks.map((attack, index) => (
                   <div key={index} className="list-group-item">

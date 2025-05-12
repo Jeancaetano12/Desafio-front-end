@@ -237,6 +237,9 @@ html, body {
   margin-top: 6px;
   text-align: center;
 }
+.Ataque-name {
+  text-align: center;
+}
 .conteiner-card-details { /* CAIXA PAI */
   background-color: #2a2a3b;
   padding: 20px;
