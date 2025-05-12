@@ -14,48 +14,89 @@
  * Arquivo: src/components/SearchBar.jsx
  * Implementa a busca de cartas Pokémon por código/nome
  */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PokemonTCG from 'pokemontcgsdk';
 
 function SearchBar({ onSearch, setLoading, setError }) {
   const [searchTerm, setSearchTerm] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [isFocused, setIsFocused] = useState(false); // 👈 novo estado para foco
 
-  const handleSearch = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const apiKey = import.meta.env.VITE_POKEMON_API_KEY;
-      PokemonTCG.configure({ apiKey });
-      
-      const card = await PokemonTCG.card.find(searchTerm);
-      onSearch(card);
-    } catch (err) {
-      setError('Carta não encontrada');
-    } finally {
-      setLoading(false);
-    }
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      if (searchTerm.length < 2) {
+        setSuggestions([]);
+        return;
+      }
+
+      try {
+        setLoading(true);
+        const apiKey = import.meta.env.VITE_POKEMON_API_KEY;
+        PokemonTCG.configure({ apiKey });
+
+        const result = await PokemonTCG.card.where({
+          q: `name:${searchTerm.split(' ')[0]}*`,
+          pageSize: 50,
+        });
+
+        const filtered = result.data.filter(card =>
+          card.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+
+        setSuggestions(filtered.slice(0, 10));
+      } catch (err) {
+        setError('Erro ao buscar sugestões');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSuggestions();
+  }, [searchTerm]);
+
+  const handleSelect = (card) => {
+    onSearch(card);
+    setSuggestions([]);
+    setSearchTerm('');
+    setIsFocused(false);
   };
 
   return (
-    <div className="search-bar mb-4">
-      <div className="d-flex">
+    <div className="search-bar mb-4 position-relative">
+      <div className="search-wrapper">
         <input
           type="text"
           className="form-control"
-          // Editando a força a forma da barra de pesquisa pra que ela fique com as duas bordas arredondadas
-          style={{ borderTopRightRadius: '0.5rem', borderBottomRightRadius: '0.5rem', borderTopLeftRadius: '0.5rem', borderBottomLeftRadius: '0.5rem' }}
-          placeholder="Ex: base1-4 (Charizard) ou swsh9-175 (Pikachu VMAX)"
+          placeholder="Digite o nome de um pokémon..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+          onFocus={() => setIsFocused(true)} // 👈 ativa sugestões
+          onBlur={() => setTimeout(() => setIsFocused(false), 150)} // 👈 espera clique em sugestão
         />
-        <button 
-          className="btn btn-primary ms-2 search-button" 
-          onClick={handleSearch}
-        >
-          Buscar
-        </button>
       </div>
+
+      {isFocused && suggestions.length > 0 && (
+        <ul className="list-group position-absolute w-100 z-index-1">
+          {suggestions.map((card) => (
+            <li
+              key={card.id}
+              className="list-group-item list-group-item-action d-flex align-items-center"
+              style={{ cursor: 'pointer' }}
+              onClick={() => handleSelect(card)}
+            >
+              <img
+                src={card.images.small}
+                alt={card.name}
+                style={{ width: '40px', marginRight: '10px' }}
+              />
+              <div>
+                <strong>{card.name}</strong><br />
+                <small>{card.set.name}</small>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

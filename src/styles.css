@@ -13,6 +13,56 @@
  * - Estilização com Bootstrap
  */
  /* Cor da pagina */
+
+/* Tema escuro suave */
+/* Garante que o fundo ocupe toda a tela */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #1e1e2f; /* seu tom escuro */
+}
+
+/* Remove rolagem horizontal caso haja */
+body {
+  overflow-x: hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.dark-theme {
+  background-color: #1e1e2f;
+  color: #f1f1f1;
+  min-height: 100vh;
+}
+
+/* Componentes internos com fundo */
+.dark-theme .card,
+.dark-theme .saved-cards-section, 
+.dark-theme .conteiner-card-details,
+.dark-theme .search-bar,
+.dark-theme .list-group-item,
+.dark-theme .card-details {
+  background-color: #2a2a3b;
+  color: #f1f1f1;
+  border: none;
+}
+
+/* Inputs e botões */
+.dark-theme input.form-control,
+.dark-theme button.btn {
+  background-color: #3a3a4a;
+  color: #fff;
+  border: none;
+}
+
+.dark-theme input::placeholder {
+  color: #aaa;
+}
+
+.dark-theme .list-group-item:hover {
+  background-color: #444;
+}
+
  /* Estilo de fontes */
 .dashboard-title {
   font-family: 'Pokemon Solid', sans-serif; /* fonte do Pokémon */
@@ -30,7 +80,7 @@
   font-size: 1.5rem;
   color: #ffcc00; /* Amarelo Pokémon */
   -webkit-text-stroke: 2px #3466af; /* Borda azul */
-  background-color: #f8f9fa; /* Fundo branco para sobrepor a linha */
+  background-color: #2a2a3b; /* Fundo branco para sobrepor a linha */
   display: inline-block;
   padding-bottom: 0.3rem;
   z-index: 1; /* Garante que o texto fique acima da linha */
@@ -178,10 +228,14 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.img-fluid {
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important; /* Pré-define a transição */
+  will-change: transform !important; /* Melhora performance da animação */
+}
+
 .img-fluid:hover {
-  transform: scale(1.05) !important;  
-  box-shadow: 0 0 24px rgba(0, 0, 0, 0.3) !important;
-  transition: transform 0.2s ease !important; 
+  transform: scale(1.05) !important;
+  box-shadow: 0 0 30px rgb(255, 205, 5) !important;
 }
 .info-conjunto {
   flex-direction: row;
@@ -200,12 +254,51 @@
   border-radius: 4px !important;
 }
 
+.btn-success {
+  background-color: rgb(8, 93, 14) !important;
+}
 .btn-success:hover {
   transform: scale(1.060);
   box-shadow: 0 0 24px rgb(4, 153, 14);
 }
 
   /* Estilos para a barra de busca */
+
+.search-wrapper {
+  background-color: #1e1e2f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-search {
+  width: 100%;
+  max-width: 500px;
+  padding: 0.75rem 1rem;
+  background-color: #2a2a3b;
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  outline: none;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.custom-search:focus {
+  box-shadow: 0 0 0 3px rgba(173, 216, 230, 0.5); /* azul claro suave */
+}
+
+
+.search-bar ul {
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  z-index: 10;
+}
+
 .search-bar {
   max-width: 600px;
   margin: 0 auto; 
@@ -214,6 +307,11 @@
 .search-bar input {
   border-radius: 20px !important;
 }
+
+.form-control{
+  text-align: center;
+}
+
  /* Estilos para o botão de pesquisa */
 .search-button {
   border-radius: 20px !important; /* Arredonda ambos os lados */

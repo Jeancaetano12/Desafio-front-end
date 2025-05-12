@@ -50,7 +50,7 @@ function App() {
 }
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-4 dark-theme">
       <h3 className="dashboard-title">Dashboard Pokémon TCG</h3>
       <SavedCards 
         cards={savedCards} 
