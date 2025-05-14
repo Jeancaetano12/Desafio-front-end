@@ -251,8 +251,8 @@ html, body {
 }
 
 .img-fluid {
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important; /* Pré-define a transição */
-  will-change: transform !important; /* Melhora performance da animação */
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important; 
+  will-change: transform !important; 
 }
 
 .img-fluid:hover {
