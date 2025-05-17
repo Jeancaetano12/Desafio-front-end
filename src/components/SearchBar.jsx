@@ -33,19 +33,19 @@ function SearchBar({ onSearch, setLoading, setError }) {
         setLoading(true);
         const apiKey = import.meta.env.VITE_POKEMON_API_KEY;
         PokemonTCG.configure({ apiKey });
-
+        
         const result = await PokemonTCG.card.where({
           q: `name:${searchTerm.split(' ')[0]}*`,
           pageSize: 40,
         });
-
+        
         const filtered = result.data.filter(card =>
           card.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
-
+        setError(false);
         setSuggestions(filtered.slice(0, 20));
       } catch (err) {
-        setError('Erro ao buscar sugestões');
+        setError('Erro ao buscar cartas, talvez você esteja usando um caracter especial?');
       } finally {
         setLoading(false);
       }
