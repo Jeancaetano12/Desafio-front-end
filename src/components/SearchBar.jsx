@@ -30,29 +30,42 @@ function SearchBar({ onSearch, setLoading, setError }) {
       }
 
       try {
+        setError(false);
         setLoading(true);
         const apiKey = import.meta.env.VITE_POKEMON_API_KEY;
-        PokemonTCG.configure({ apiKey });
         
-        const result = await PokemonTCG.card.where({
-          q: `name:${searchTerm.split(' ')[0]}*`,
-          pageSize: 40,
+        const url = `/api/v2/cards?q=name:${searchTerm.split(' ')[0]}*&pageSize=40`;
+
+        const response = await fetch(url, {
+          headers: {
+            'X-Api-Key': apiKey
+          }
         });
         
-        const filtered = result.data.filter(card =>
+        if (!response.ok) {
+          throw new Error('A resposta da rede não foi bem-sucedida');
+        }
+
+        const result = await response.json();
+        const filtered = result.data.filter(card => 
           card.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
+        console.log('Cartas puxadas:', filtered)
         setError(false);
-        setSuggestions(filtered.slice(0, 20));
+        setSuggestions(filtered.slice(0, 30));
       } catch (err) {
+        console.error(err);
         setError('Erro ao buscar cartas, talvez você esteja usando um caracter especial?');
       } finally {
         setLoading(false);
       }
     };
 
-    fetchSuggestions();
-  }, [searchTerm]);
+    const timer = setTimeout(() => {
+      fetchSuggestions();
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [searchTerm, setLoading, setError]);
 
   const handleSelect = (card) => {
     onSearch(card);
